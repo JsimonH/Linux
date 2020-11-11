@@ -18,7 +18,9 @@ int main()
     {    
         //父进程    
         printf("this is parent process: %d\n", getpid());
-		while(1)
+		
+        //当子进程先于父进程退出,但父进程没有对子进程的资源进行回收管理,此时子进程将会成为"僵尸进程"
+        while(1)
         {
             sleep(1);
             printf("child process exited..\n");
