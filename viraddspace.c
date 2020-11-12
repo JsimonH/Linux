@@ -13,13 +13,13 @@ int main()
     else if(rpid == 0)
     {
         //child
-        printf("child: a = %d\n", a);
+        printf("child: a[%p] = %d\n", &a, a);
     }
     else
     {
         //parent
         a = 0; //父进程将a的值修改为0
-        printf("parent: a = %d\n", a);
+        printf("parent: a[%p] = %d\n", &a, a);
     }
     sleep(1);
     return 0;
