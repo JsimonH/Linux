@@ -20,24 +20,24 @@ int main()
     }
     else
     {
-        //father process
+        //parent process
         pid_t status;
         //pid_t wait(int *stat_loc);
         wait(&status);
         if((status & 0x7F) == 0)
         {
-            printf("exit normally\n");
+            printf("正常退出\n");
             printf("exitcode = %d\n", (status >> 8) & 0xFF);
         }
         else
         {
-            printf("exit abnormally\n");
-            printf("codeflag=%d\n", (status >> 7) & 0x1);
+            printf("异常退出\n");
+            printf("codeflag = %d\n", (status >> 7) & 0x1);
         }
         while(1)
         {
             sleep(2);
-            printf("I am father process, I am going to exit\n");
+            printf("I am parent process, I am going to exit\n");
         }
     }
     return 0;
