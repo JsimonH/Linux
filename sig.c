@@ -6,8 +6,8 @@ struct sigaction oldact;
 
 void sigcallback(int signo)
 {
-    printf("signo:%d\n", signo);
-	sigaction(2, &oldact, NULL);
+    printf("signo: %d\n", signo);
+    sigaction(2, &oldact, NULL);
 }
 
 int main()
