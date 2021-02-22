@@ -11,7 +11,7 @@
     stack_t uc_stack;          // 该上下文中使用的栈
     mcontext_t uc_mcontext;    // 保存所有的寄存器的值
     __sigset_t uc_sigmask;     // 该上下文中的阻塞信号集合
-} ucontext_t;
+} ucontext_t;**
 
 // 获取当前上下文保存到ucp中。
 int getcontext(ucontext_t *ucp);  
