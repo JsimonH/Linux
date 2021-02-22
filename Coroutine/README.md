@@ -8,21 +8,21 @@
 
 ```
 typedef struct ucontext {
-    struct ucontext *uc_link;    // 当前上下文执行完了，恢复运行的上下文
-    stack_t uc_stack;                // 该上下文中使用的栈
-    mcontext_t uc_mcontext; // 保存所有的寄存器的值
-    __sigset_t uc_sigmask;      // 该上下文中的阻塞信号集合
+    struct ucontext *uc_link; // 当前上下文执行完了，恢复运行的上下文
+    stack_t uc_stack;         // 该上下文中使用的栈
+    mcontext_t uc_mcontext;   // 保存所有的寄存器的值
+    __sigset_t uc_sigmask;    // 该上下文中的阻塞信号集合
 } ucontext_t;
-```
 
-// 获取当前上下文保存到ucp中。
-int getcontext(ucontext_t *ucp);  
+// 获取当前上下文保存到ucp中
+int getcontext(ucontext_t *ucp);       
 
 // 设置上下文为ucp的执行状态。
 int setcontext(const ucontext_t *ucp); 
- 
- // 创建上下文，修改通过getcontext取得的上下文ucp, 然后给该上下文指定一个栈空间ucp->stack，设置后继的上下文ucp->uc_link。
-void makecontext(ucontext_t *ucp, void (*func)(), int argc, ...);
+
+// 创建上下文，修改通过getcontext取得的上下文ucp, 然后给该上下文指定一个栈空间ucp->stack，设置后继的上下文ucp->uc_link。
+ void makecontext(ucontext_t *ucp, void (*func)(), int argc, ...); 
 
 // 切换上下文，保存当前上下文到oucp结构体中，然后激活upc上下文。
-int swapcontext(ucontext_t *oucp, ucontext_t *ucp); 
+int swapcontext(ucontext_t *oucp, ucontext_t *ucp);  
+```
