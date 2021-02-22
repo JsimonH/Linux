@@ -6,14 +6,14 @@
 协程的核心就是**用户态实现栈切换**。Linux提供了getcontext()，setcontext()，makecontext()，swapcontext()四个函数实现栈切换。我们首先来了解**ucontext组件：**
     在类 System V 环境下，头文件< ucontext.h > 中定义了两个结构类型 mcontext_t 和 ucontext_t 和四个函数 getcontext( )，setcontext( )，makecontext( )和 swapcontext( )。利用它们可以在一个进程中实现用户级的线程切换。mcontext_t 类型与机器相关，并且不透明。ucontext_t 结构体则至少拥有以下几个域: 
 
-(```)
-    typedef struct ucontext {
-    struct ucontext *uc_link; // 当前上下文执行完了，恢复运行的上下文
-    stack_t uc_stack;         // 该上下文中使用的栈
-    mcontext_t uc_mcontext;   // 保存所有的寄存器的值
-    __sigset_t uc_sigmask;    // 该上下文中的阻塞信号集合
+```
+typedef struct ucontext {
+    struct ucontext *uc_link;    // 当前上下文执行完了，恢复运行的上下文
+    stack_t uc_stack;                // 该上下文中使用的栈
+    mcontext_t uc_mcontext; // 保存所有的寄存器的值
+    __sigset_t uc_sigmask;      // 该上下文中的阻塞信号集合
 } ucontext_t;
-(```)
+```
 
 // 获取当前上下文保存到ucp中。
 int getcontext(ucontext_t *ucp);  
